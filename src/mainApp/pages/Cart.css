@@ -4,8 +4,10 @@
   box-sizing: border-box;
 }
 
+ {
+  /* background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+}
 .out {
-  background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 30s ease infinite;
   display: flex;
@@ -80,16 +82,14 @@
   aspect-ratio: 1;
   object-fit: contain;
 }
-.remove-item {
-  transition: color 0.2s ease-in;
-}
 
-.counter {
-  padding-left: 10px;
-  padding-right: 10px;
+.removeItem:hover {
+  color: white;
+  background-color: red;
 }
-.remove-item:hover {
-  color: rgb(64, 64, 241);
+.editItem:hover {
+  color: white;
+  background-color: blue;
 }
 
 .place-order-button > button {
@@ -110,37 +110,43 @@
 
 .place-order-button > .remove {
   color: white;
-  background-color: #6666665c;
+  background-color: red;
+  opacity: 0.9;
 }
 
-.qty-count > i {
+.quantity:hover {
   cursor: pointer;
-  padding: 10px;
+
+  opacity: 0.9;
 }
 
-.qty-count > .quantity > i:hover {
-  cursor: pointer;
+.removeItem {
+  background-color: white;
+  color: red;
+  width: fit-content;
+  height: fit-content;
+}
+
+.editItem {
+  background-color: white;
   color: blue;
-  opacity: 0.7;
+  width: fit-content;
+  height: fit-content;
 }
-
-.qty-count > * {
-  height: 28px;
-}
-
-.quantity {
+ {
+  /*}.quantity {
   padding-top: 5px;
 }
 .qty-count > .quantity > input[type="text"] {
-  width: 40px;
-  height: 25px;
+  
   border-radius: 5px;
   border: 2px solid rgb(165, 158, 158);
   outline: none;
   margin: auto 8px;
   padding-left: 8px;
 }
-
+*/
+}
 .place-order-button {
   width: 100%;
   display: flex;
@@ -167,7 +173,7 @@
   border-radius: 20px;
   height: fit-content;
   padding: 10px 24px;
-  line-height: 1.4;
+  line-height: 1.7;
 }
 
 .price-summary > * {

@@ -17,9 +17,12 @@ import { getToken } from "../components/Log";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
+import { green, orange } from "@mui/material/colors";
 
 function Cart() {
   const navigate = useNavigate();
+
   const notify_log = () => {
     const myToast = toast.error(
       (t) => (
@@ -92,36 +95,47 @@ function Cart() {
           </div>
           <div className="name-date">
             <h1> {product.name}</h1>
-            <h2 style={{ fontSize: 20, fontWeight: 100, margin: "10px 0" }}>
-              &#8377;{product.price}
+            <h2
+              style={{
+                fontSize: 20,
+                fontWeight: 100,
+                margin: "10px 0",
+              }}
+            >
+              Highest Bid &#8377;{product.price}
             </h2>
             <div className="qty-count">
               <div className="quantity">
-                <FontAwesomeIcon
-                  icon={faMinus}
-                  className="faFade"
+                <button
+                  className="removeItem"
                   onClick={() => {
                     if (product.productCount > 0) {
                       dispatch(decrement(index));
                     }
                   }}
-                />
-                <span className="counter"> {product.productCount}</span>
-                <FontAwesomeIcon
-                  icon={faPlus}
+                  style={{ cursor: "pointer" }}
+                >
+                  Remove
+                </button>
+              </div>
+              <div className="quantity">
+                <button
+                  className="editItem"
                   onClick={() => {
-                    if (product.productCount < product.countInStock) {
-                      dispatch(increment(index));
-                    }
+                    navigate(`/products/id/${product.id}`);
                   }}
-                />
+                  style={{ cursor: "pointer" }}
+                >
+                  Edit BID
+                </button>
               </div>
             </div>
           </div>
         </div>
         <h2 className="price">
-          <span>Total : &#8377;{product.price * product.productCount}</span>
+          <span>Your BID: &#8377;1999</span>
         </h2>
+
         <Toaster />
       </div>
     );
@@ -145,15 +159,16 @@ function Cart() {
               >
                 Empty Cart
               </button>
-              <button
+              {/*<button
                 type="button"
                 className="place-order"
                 onClick={() => {
                   handler1(cart);
                 }}
               >
-                Place Order
-              </button>
+                EDIT BID
+              </button> 
+              navigate("/products/id/{product.id}");*/}
             </div>
           </div>
 
@@ -165,13 +180,9 @@ function Cart() {
               <h1>Price</h1>
               <h1> &#8377;{total}</h1>
             </div>
-            <div className="Delivery">
-              <h1>Delivery Tax</h1>
-              <h1> &#8377; {Math.floor((1 / 100) * total)}</h1>
-            </div>
             <div className="Total">
               <h1>Total</h1>
-              <h1> &#8377; {total + Math.floor((1 / 100) * total)}</h1>
+              <h1> &#8377; {total}</h1>
             </div>
           </div>
           <Toaster />
