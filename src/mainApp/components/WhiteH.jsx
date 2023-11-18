@@ -62,6 +62,9 @@ function WhiteH() {
       <Link to="/">
         <div>
           <h1>BitsBID</h1>
+          <div>
+            <img src="../images/logo.jpg" alt="logo"></img>
+          </div>
         </div>
       </Link>
       <div className="dwd">
@@ -71,9 +74,11 @@ function WhiteH() {
         <div>
           <a href="">Buy</a>
         </div>
-        <div>
-          <a href="">Sell</a>
-        </div>
+        <Link to="/sell">
+          <div>
+            <a href="">Sell </a>
+          </div>
+        </Link>
       </div>
       <div className="searchbar sb">
         <input
