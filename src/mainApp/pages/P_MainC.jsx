@@ -8,6 +8,7 @@ import { getToken } from "../components/Log";
 import toast, { Toaster } from "react-hot-toast";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { updateBid , updateHighestBid } from "./store";
 import { Add } from "./store";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -43,17 +44,27 @@ function P_MainC() {
   const [inputBid, setInputBid] = useState("");
   const productBid = useSelector((state) => state.inputBid);
 
+  
   const typebid = (event) => {
     setInputBid(event.target.value);
   };
   const addToCart = (data) => {
-    let newData = JSON.parse(JSON.stringify(data));
-    newData.productCount = value;
+    const newBid = parseInt(inputBid);
+    console.log(newBid);
+    // dispatch(updateBid({ productId: data._id, newBid }));
+    let newData = {
+      ...data,
+      newBid, // Include the new bid in the payload
+      productCount: value
+    };
+     
     if (value == 0) {
       setValue(1);
       return;
     }
     dispatch(Add(newData));
+    dispatch(updateBid({ productId: data._id, newBid }));
+    dispatch(updateHighestBid({ productId: data._id, newBid }));
     notify_add();
   };
   const notify_add = () => {

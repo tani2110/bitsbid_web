@@ -87,6 +87,7 @@ function Cart() {
   const total = useSelector((state) => state.cart.totalPrice);
   const dispatch = useDispatch();
   const listOfItems = cart.map((product, index) => {
+    console.log(product);
     return (
       <div className="product-card">
         <div className="details">
@@ -102,7 +103,8 @@ function Cart() {
                 margin: "10px 0",
               }}
             >
-              Highest Bid &#8377;{product.price}
+              
+              Highest Bid &#8377;{product.highestBid}
             </h2>
             <div className="qty-count">
               <div className="quantity">
@@ -133,7 +135,7 @@ function Cart() {
           </div>
         </div>
         <h2 className="price">
-          <span>Your BID: &#8377;1999</span>
+          <span>Your BID: &#8377;{product.userBid}</span>
         </h2>
 
         <Toaster />

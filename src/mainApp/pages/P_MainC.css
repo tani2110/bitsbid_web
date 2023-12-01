@@ -138,7 +138,7 @@ button {
   height: 50px;
   margin-bottom: 10px !important;
 }
- {
+ 
   /*.bids {
   display: flex;
   justify-content: space-around;
@@ -177,7 +177,7 @@ button {
 #btn-buy:hover {
   background-color: rgb(31, 31, 31, 0.8);
 } */
-}
+
 
 #input-cart {
   color: #716a6a;

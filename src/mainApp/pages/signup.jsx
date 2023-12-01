@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./signup.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock, faPhone, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faLock,
+  faPhone,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import Footer from "../components/Footer";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -14,14 +19,21 @@ function Signup() {
     email: "",
     pass: "",
     cpass: "",
-    phone:"",
+    phone: "",
+    hostel: "",
   });
-  const notify_emae = () =>{
-    const toastId= toast.error(
+  const notify_emae = () => {
+    const toastId = toast.error(
       (t) => (
         <span>
           Email already exists,{" "}
-          <span className="toast-span" onClick={() => {navigate("/login"); toast.dismiss(toastId);}}>
+          <span
+            className="toast-span"
+            onClick={() => {
+              navigate("/login");
+              toast.dismiss(toastId);
+            }}
+          >
             Login Instead
           </span>
         </span>
@@ -33,7 +45,8 @@ function Signup() {
           color: "#fff",
         },
       }
-    )};
+    );
+  };
   const notify_faf = () =>
     toast.error(
       (t) => (
@@ -65,10 +78,10 @@ function Signup() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    const { fName, lName, email, pass, cpass, phone } = data;
+    const { fName, hostel, email, pass, cpass, phone } = data;
     if (fName && email && pass && cpass && phone) {
       if (pass === cpass) {
-        const fetchData = await fetch(`http://localhost:3001/users/signup`, {
+        const fetchData = await fetch(`http://localhost:8080/users/signup`, {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -119,14 +132,14 @@ function Signup() {
                 <i>
                   <FontAwesomeIcon icon={faUser} />
                 </i>
-                <label htmlFor="lName">
-                  <h2>Last Name</h2>
+                <label htmlFor="hostel">
+                  <h2> Hostel </h2>
                 </label>
                 <input
                   type={"text"}
-                  name="lName"
-                  id="lName"
-                  value={data.lName}
+                  name="hostel"
+                  id="hostel"
+                  value={data.hostel}
                   onChange={onChange}
                   placeholder="Ufff, too many formalities?"
                 />

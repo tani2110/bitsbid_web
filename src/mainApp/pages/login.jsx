@@ -56,7 +56,7 @@ function Login() {
     e.preventDefault();
     const { email, pass } = data;
     if (email && pass) {
-      const fetchData = await fetch(`http://localhost:3001/users/login`, {
+      const fetchData = await fetch(`http://localhost:8080/users/login`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-
+import { useState } from "react";
 import Deals from "../components/Deals";
 import Carou from "../components/Carou";
 

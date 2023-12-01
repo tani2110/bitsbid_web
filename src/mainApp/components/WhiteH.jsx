@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from "react";  
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import "./HeaderTop.css";
+import "./WhiteH.css";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Switch, Route, useNavigate } from "react-router-dom";
 
@@ -61,19 +63,14 @@ function WhiteH() {
     <div className="whiteH">
       <Link to="/">
         <div>
-          <h1>BitsBID</h1>
-          <div>
-            <img src="../images/logo.jpg" alt="logo"></img>
-          </div>
+          <img
+            className="brandlogo"
+            src={require("../images/logo.jpg")}
+            alt="brand logo"
+          />
         </div>
       </Link>
       <div className="dwd">
-        <div>
-          <a href="">About</a>
-        </div>
-        <div>
-          <a href="">Buy</a>
-        </div>
         <Link to="/sell">
           <div>
             <a href="">Sell </a>
@@ -140,10 +137,9 @@ function WhiteH() {
         </div>
 
         <div className="searchbar">
-          <a href="">
-            {" "}
-            <FavoriteBorderIcon />{" "}
-          </a>
+        <Link to="/chat">
+            <ChatOutlinedIcon />{" "}
+       </Link>
         </div>
         <div className="searchbar">
           <Link to="/cart">

@@ -12,7 +12,7 @@ function GreenH() {
     <div className="greenH">
         <div className="phone">
           <LocalPhoneRoundedIcon className="phone-icon" />
-          +91 94260 23104
+          +91 1234567890
         </div>
         <div>Get 50% Off on Selected Items | Shop Now</div>
           <Log/>

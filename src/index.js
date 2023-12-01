@@ -14,6 +14,7 @@ import Signup from "./mainApp/pages/signup";
 import Login from "./mainApp/pages/login";
 import Cart from "./mainApp/pages/Cart";
 import Sell from "./mainApp/pages/sell";
+import Chat from "./mainApp/pages/Chat";
 import Profile from "./mainApp/pages/Profile";
 import { Provider } from "react-redux";
 import store from "./mainApp/pages/store";
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<Cart />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/sell" element={<Sell />} />
+      <Route path="/chat" element={<Chat />} />
     </Route>
   )
 );

@@ -13,7 +13,7 @@ function Profile() {
       <div className="pro-bdy">
         <div class="pro-cont">
           <div class="username">
-            <h3>{currentUser[currentUser.length-1].fName} {currentUser[currentUser.length-1].lName}</h3>
+            <h3>{currentUser[currentUser.length-1].fName} {currentUser[currentUser.length-1].hostel}</h3>
             <p>{currentUser[currentUser.length-1].email}</p>
             <p>{currentUser[currentUser.length-1].phone}</p>
           </div>
