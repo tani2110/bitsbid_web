@@ -17,7 +17,7 @@ function Signup() {
     name: "",
     hostel: "",
     email: "",
-    pass: "",
+    password: "",
 
     phone: "",
   });
@@ -77,9 +77,9 @@ function Signup() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    const { name, hostel, email, pass, phone } = data;
-    if (name && email && pass && hostel && phone) {
-      // const fetchData = await fetch(`http://localhost:8080/users/signup`, {
+    const { name, hostel, email, password, phone } = data;
+    if (name && email && password && hostel && phone) {
+      // const fetchData = await fetch(http://localhost:8080/users/signup, {
       //   method: "POST",
       //   headers: {
       //     "content-type": "application/json",
@@ -209,9 +209,9 @@ function Signup() {
               </label>
               <input
                 type={"password"}
-                name="pass"
-                id="pass"
-                value={data.pass}
+                name="password"
+                id="password"
+                value={data.password}
                 onChange={onChange}
                 placeholder="Choose a Strong One!"
               />

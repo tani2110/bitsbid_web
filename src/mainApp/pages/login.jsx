@@ -12,22 +12,28 @@ import { Userr } from "./store";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const [data, setData] = useState({
     email: "",
-    pass: "",
+    password: "",
   });
   const currentUser = useSelector((state) => state.user.details);
   const addToStore = (data) => {
     let newData = JSON.parse(JSON.stringify(data));
     dispatch(Userr(newData));
   };
-  const notify_nu = () =>{
+  const notify_nu = () => {
     const toastId = toast.error(
       (t) => (
         <span>
           Account dosen't exist,{" "}
-          <span className="toast-span" onClick={() => {navigate("/signup"); toast.dismiss(toastId);}}>
+          <span
+            className="toast-span"
+            onClick={() => {
+              navigate("/signup");
+              toast.dismiss(toastId);
+            }}
+          >
             Signup Instead
           </span>
         </span>
@@ -39,7 +45,8 @@ function Login() {
           color: "#fff",
         },
       }
-    )};
+    );
+  };
   const notify_pi = () =>
     toast.error((t) => <span>Password Incorrect, Try Again.</span>, {
       style: {
@@ -54,25 +61,28 @@ function Login() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    const { email, pass } = data;
-    if (email && pass) {
-      const fetchData = await fetch(`http://localhost:8080/users/login`, {
+    const { email, password } = data;
+    // console.log(data);
+    if (email && password) {
+      const fetchData = await fetch("http://localhost:8080/users/login", {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
+
         body: JSON.stringify(data),
       });
 
       const dataRes = await fetchData.json();
-      console.log(dataRes);
+      // console.log(dataRes);
       if (dataRes.alert) {
+        console.log(dataRes);
         setToken(1);
-        addToStore(dataRes.data)
+        addToStore(dataRes.data);
         navigate("/");
         window.location.reload();
-        
       } else {
+        console.log(dataRes);
         if (dataRes.alertin) {
           notify_pi();
         } else {
@@ -109,14 +119,14 @@ function Login() {
                 <i>
                   <FontAwesomeIcon icon={faLock} />
                 </i>
-                <label htmlFor="pass">
+                <label htmlFor="password">
                   <h2>Password</h2>
                 </label>
                 <input
                   type={"password"}
-                  name="pass"
-                  id="pass"
-                  value={data.pass}
+                  name="password"
+                  id="password"
+                  value={data.password}
                   onChange={onChange}
                   placeholder="Recall the Strong One!"
                 />
