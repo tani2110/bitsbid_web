@@ -14,13 +14,12 @@ import toast, { Toaster } from "react-hot-toast";
 function Signup() {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    fName: "",
-    lName: "",
+    name: "",
+    hostel: "",
     email: "",
     pass: "",
-    cpass: "",
+
     phone: "",
-    hostel: "",
   });
   const notify_emae = () => {
     const toastId = toast.error(
@@ -78,128 +77,146 @@ function Signup() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    const { fName, hostel, email, pass, cpass, phone } = data;
-    if (fName && email && pass && cpass && phone) {
-      if (pass === cpass) {
-        const fetchData = await fetch(`http://localhost:8080/users/signup`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+    const { name, hostel, email, pass, phone } = data;
+    if (name && email && pass && hostel && phone) {
+      // const fetchData = await fetch(`http://localhost:8080/users/signup`, {
+      //   method: "POST",
+      //   headers: {
+      //     "content-type": "application/json",
+      //   },
 
-        const dataRes = await fetchData.json();
-        console.log(dataRes);
-        if (dataRes.alert) {
+      //   body: JSON.stringify(data),
+      // });
+      // console.log(data);
+      // const dataRes = await fetchData
+      //   .json()
+      //   .then((response) => response.text())
+      //   .then((result) => console.log(result))
+      //   .catch((error) => console.log("error", error));
+      const fetchData = await fetch("http://localhost:8080/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Use "Content-Type" instead of "content-type"
+        },
+        body: JSON.stringify(data),
+      });
+
+      try {
+        const result = await fetchData.text(); // Parse JSON response
+        console.log(result);
+        console.log(fetchData);
+
+        if (fetchData.ok) {
           navigate("/login");
-        } else {
-          notify_emae();
         }
-      } else {
-        notify_pnm();
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+        // Handle error or display an appropriate message to the user
       }
-    } else {
-      notify_faf();
+      //    else {
+      //     notify_emae();
+      //   }
+      // } else {
+      //   notify_faf();
+      // // }
     }
   }
   return (
     <div>
       <div className="container-sgnp">
-        <form onSubmit={handleSubmit}>
-          <div className="login-box">
-            <div className="login-content">
-              <h1>Sign Up</h1>
-              <div className="wrap">
-                <i>
-                  <FontAwesomeIcon icon={faUser} />
-                </i>
-                <label htmlFor="fName">
-                  <h2>
-                    First Name<span className="asterix">*</span>
-                  </h2>
-                </label>
-                <input
-                  type={"text"}
-                  name="fName"
-                  id="fname"
-                  value={data.fName}
-                  onChange={onChange}
-                  placeholder="We'll call you by that!"
-                />
-              </div>
-              <div className="wrap">
-                <i>
-                  <FontAwesomeIcon icon={faUser} />
-                </i>
-                <label htmlFor="hostel">
-                  <h2> Hostel </h2>
-                </label>
-                <input
-                  type={"text"}
-                  name="hostel"
-                  id="hostel"
-                  value={data.hostel}
-                  onChange={onChange}
-                  placeholder="Ufff, too many formalities?"
-                />
-              </div>
-              <div className="wrap">
-                <i>
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </i>
-                <label htmlFor="email">
-                  <h2>
-                    Email ID<span className="asterix">*</span>
-                  </h2>
-                </label>
-                <input
-                  type={"email"}
-                  name="email"
-                  id="email"
-                  value={data.email}
-                  onChange={onChange}
-                  placeholder="Won't spam, Don't Worry!!"
-                />
-              </div>
-              <div className="wrap">
-                <i>
-                  <FontAwesomeIcon icon={faPhone} />
-                </i>
-                <label htmlFor="phone">
-                  <h2>
-                    Phone<span className="asterix">*</span>
-                  </h2>
-                </label>
-                <input
-                  type={"number"}
-                  name="phone"
-                  id="phone"
-                  value={data.phone}
-                  onChange={onChange}
-                  placeholder="Won't Call, Don't Worry!!"
-                  className="phoneeeee"
-                />
-              </div>
-              <div className="wrap">
-                <i>
-                  <FontAwesomeIcon icon={faLock} />
-                </i>
-                <label htmlFor="pass">
-                  <h2>
-                    Password<span className="asterix">*</span>
-                  </h2>
-                </label>
-                <input
-                  type={"password"}
-                  name="pass"
-                  id="pass"
-                  value={data.pass}
-                  onChange={onChange}
-                  placeholder="Choose a Strong One!"
-                />
-              </div>
-              <div className="wrap">
+        <div className="login-box">
+          <div className="login-content">
+            <h1>Sign Up</h1>
+            <div className="wrap">
+              <i>
+                <FontAwesomeIcon icon={faUser} />
+              </i>
+              <label htmlFor="name">
+                <h2>
+                  First Name<span className="asterix">*</span>
+                </h2>
+              </label>
+              <input
+                type={"text"}
+                name="name"
+                id="name"
+                value={data.name}
+                onChange={onChange}
+                placeholder="We'll call you by that!"
+              />
+            </div>
+            <div className="wrap">
+              <i>
+                <FontAwesomeIcon icon={faUser} />
+              </i>
+              <label htmlFor="hostel">
+                <h2> Hostel </h2>
+              </label>
+              <input
+                type={"text"}
+                name="hostel"
+                id="hostel"
+                value={data.hostel}
+                onChange={onChange}
+                placeholder="Ufff, too many formalities?"
+              />
+            </div>
+            <div className="wrap">
+              <i>
+                <FontAwesomeIcon icon={faEnvelope} />
+              </i>
+              <label htmlFor="email">
+                <h2>
+                  Email ID<span className="asterix">*</span>
+                </h2>
+              </label>
+              <input
+                type={"email"}
+                name="email"
+                id="email"
+                value={data.email}
+                onChange={onChange}
+                placeholder="Won't spam, Don't Worry!!"
+              />
+            </div>
+            <div className="wrap">
+              <i>
+                <FontAwesomeIcon icon={faPhone} />
+              </i>
+              <label htmlFor="phone">
+                <h2>
+                  Phone<span className="asterix">*</span>
+                </h2>
+              </label>
+              <input
+                type={"number"}
+                name="phone"
+                id="phone"
+                value={data.phone}
+                onChange={onChange}
+                placeholder="Won't Call, Don't Worry!!"
+                className="phoneeeee"
+              />
+            </div>
+            <div className="wrap">
+              <i>
+                <FontAwesomeIcon icon={faLock} />
+              </i>
+              <label htmlFor="pass">
+                <h2>
+                  Password<span className="asterix">*</span>
+                </h2>
+              </label>
+              <input
+                type={"password"}
+                name="pass"
+                id="pass"
+                value={data.pass}
+                onChange={onChange}
+                placeholder="Choose a Strong One!"
+              />
+            </div>
+            {/* <div className="wrap">
                 <i>
                   <FontAwesomeIcon icon={faLock} />
                 </i>
@@ -216,17 +233,16 @@ function Signup() {
                   onChange={onChange}
                   placeholder="Make it Match the Strong One!"
                 />
-              </div>
-              <h3>
-                Already a User? Login{" "}
-                <Link to="/login" className="linktologin">
-                  Here
-                </Link>
-              </h3>
-              <button>SIGN UP</button>
-            </div>
+              </div> */}
+            <h3>
+              Already a User? Login{" "}
+              <Link to="/login" className="linktologin">
+                Here
+              </Link>
+            </h3>
+            <button onClick={handleSubmit}>SIGN UP</button>
           </div>
-        </form>
+        </div>
       </div>
       <Footer />
       <Toaster />
